@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: server-deployment
+ namespace: ${NAMESPACE}
+spec:
+ selector:
+  matchLabels:
+   app: flask
+ replicas: 1 
+ template:
+   metadata:
+     namespace: ${NAMESPACE}
+     labels:
+       app: flask
+   spec:
+     containers:
+     - name: shortserver
+       image: ${IMAGE}
+       ports:
+       - containerPort: 3000
+     imagePullSecrets:
+     - name: ${SECRET}
