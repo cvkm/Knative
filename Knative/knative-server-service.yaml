@@ -1,0 +1,14 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+ name: knative-server-service
+ labels:
+   app: flask
+spec:
+ type: NodePort
+ ports:
+ - port: 3000
+   name: http
+   nodePort: 30080
+ selector:
+   app: flask
